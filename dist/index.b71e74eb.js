@@ -560,62 +560,49 @@ var _router = require("./router");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initButon", ()=>initButon);
-var _state = require("../../state");
 function initButon() {
     class Button extends HTMLElement {
-        shadow = this.attachShadow({
-            mode: "open"
-        });
         constructor(){
             super();
             this.render();
         }
-        connetCallback() {
-            const form = this.shadow.querySelector(".form");
-            form.addEventListener("submit", (e)=>{
-                e.preventDefault();
-                const f = e.target;
-                (0, _state.state).addItem(f.text.value);
-            // console.log(f.text.value, "form");
-            });
-        }
         render() {
+            const shadow = this.attachShadow({
+                mode: "open"
+            });
             const label = this.getAttribute("label");
             const div = document.createElement("div");
             const style = document.createElement("style");
             div.classList.add("root");
             div.innerHTML = ` 
-      <form class="form">
-     
-      <button class=" button">${label}</button> 
-    </form>
+    <button class=" button">${label}</button> 
         `;
             style.innerHTML = `
-      .form {
-        display: flex;
-        flex-direction: column;
-    }
-    .label{
-        font-size:18px
-    }
-  
-      .button {
-        font-size:18px;
-          padding: 17px 13px;
-          margin: 18px;
-          border-radius: 4px;
-          background-color : #9CBBE9;
-      }
+        .root{
+            display: flex;
+            flex-direction: column;
+        }
+        .label{
+            font-size:18px
+        }
+        .button{
+            font-size:18px;
+            padding: 17px 13px;
+            margin: 18px;
+            border-radius: 4px;
+            background-color : #9CBBE9;
+            
+        }
         `;
-            this.shadow.appendChild(style);
-            this.shadow.appendChild(div);
-            console.log("este es el buton", div);
+            shadow.appendChild(style);
+            shadow.appendChild(div);
+        // console.log("este es el buton", div);
         }
     }
     customElements.define("custon-button", Button);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../state":"1Yeju"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -645,34 +632,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"1Yeju":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "state", ()=>state);
-const state = {
-    data: {
-        list: []
-    },
-    listeners: [],
-    getState () {
-        return this.data;
-    },
-    setState (newState) {
-        this.data = newState;
-        for (const cb of this.listeners)cb();
-    // console.log(" soy el state y e cambiado", this.data);
-    },
-    subscribe (callback) {
-        this.listeners.push(callback);
-    },
-    addItem (item) {
-        const cs = this.getState();
-        cs.list.push(item);
-        this.setState(cs);
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4QFWt":[function(require,module,exports) {
+},{}],"4QFWt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initRouter", ()=>initRouter);
@@ -714,6 +674,7 @@ function initRouter(conteiner) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initPageWelcome", ()=>initPageWelcome);
+var _state = require("./../../state");
 function initPageWelcome(params) {
     const div = document.createElement("div");
     const style = document.createElement("style");
@@ -728,9 +689,17 @@ function initPageWelcome(params) {
   <subtitle-field label ="Para continuar ingresá tu nombre"></subtitle>
   </div>
   <form class="form">
+<div>
+<input-field   label="Nombre" id="text"></input>
+</div>
 
-  <input-field label = "Nombre" id="text"></input>
+
+
   <custon-button  class= "custon-button " label="Comenzar"></custon-button>
+
+
+
+
   </form>
   
 
@@ -741,11 +710,22 @@ function initPageWelcome(params) {
    </div>
   
    `;
+    const formEL = div.querySelector(".form");
+    console.log((0, _state.state).getState(), "este es el state");
+    console.log("este es el form", formEL);
+    formEL.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        (0, _state.state).setState({
+            ...(0, _state.state).getState(),
+            name: e.target.value
+        });
+        console.log(e.target.value, "form");
+    });
     const buttonEL = div.querySelector(".custon-button ");
-    // console.log(" este es el boton  del welcome", buttonEL);
-    buttonEL.addEventListener("click", ()=>params.goTo("./form"));
+    console.log(" este es el boton  del welcome", buttonEL);
+    //buttonEL.addEventListener("click", () => params.goTo("./form"));
     style.innerHTML = `
-    .body {  display: flex;
+  .body {  display: flex;
       flex-direction: column;
     
     }
@@ -754,12 +734,39 @@ function initPageWelcome(params) {
         flex-direction: column;  
         gap:25px;
         margin-bottom:1px; 
-      }
-        
-                `;
+    }
+    
+    `;
     div.append(style);
     return div;
 }
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../../state":"1Yeju"}],"1Yeju":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+const state = {
+    data: {
+        list: []
+    },
+    listeners: [],
+    getState () {
+        return this.data;
+    },
+    setState (newState) {
+        this.data = newState;
+        for (const cb of this.listeners)cb();
+    // console.log(" soy el state y e cambiado", this.data);
+    },
+    subscribe (callback) {
+        this.listeners.push(callback);
+    },
+    addItem (item) {
+        const cs = this.getState();
+        cs.list.push(item);
+        this.setState(cs);
+    }
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Opt5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -966,9 +973,10 @@ function initinput() {
             const style = document.createElement("style");
             div.classList.add("root");
             div.innerHTML = `
-        <label class=" label">${label}</label>
-       
-       <input class="input" type="${this.id}" placeholder=" ingresa tu ${label}"/>
+        
+      
+      <input 
+       class="input" type="${this.id}" name= "${label}" placeholder=" ingresa tu ${label}"/>
        
         `;
             style.innerHTML = `

@@ -14,9 +14,10 @@ export function initinput() {
       div.classList.add("root");
 
       div.innerHTML = `
-        <label class=" label">${label}</label>
-       
-       <input class="input" type="${this.id}" placeholder=" ingresa tu ${label}"/>
+        
+      
+      <input 
+       class="input" type="${this.id}" name= "${label}" placeholder=" ingresa tu ${label}"/>
        
         `;
       style.innerHTML = `
