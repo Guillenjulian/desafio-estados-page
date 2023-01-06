@@ -15,9 +15,9 @@ export function initinput() {
 
       div.innerHTML = `
         
-      
+      <span class="label">${label}</span>
       <input 
-       class="input" type="${this.id}" name= "${label}" placeholder=" ingresa tu ${label}"/>
+       class="input" type="${this.id}" name= "${label}" placeholder="  ${label}"/>
        
         `;
       style.innerHTML = `

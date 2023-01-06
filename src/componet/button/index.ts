@@ -1,3 +1,5 @@
+import { state } from "./../../state";
+
 export function initButon() {
   class Button extends HTMLElement {
     constructor() {
@@ -14,7 +16,10 @@ export function initButon() {
       div.classList.add("root");
 
       div.innerHTML = ` 
-    <button class=" button">${label}</button> 
+<form class="form">
+<input-field name="${label}" label="Nombre" id="text"></input-field>
+<button class=" button">${label}</button> 
+</form>
         `;
       style.innerHTML = `
         .root{
@@ -38,8 +43,21 @@ export function initButon() {
 
       shadow.appendChild(div);
       // console.log("este es el buton", div);
+      const formEL: any = div.querySelector(".form") as any;
+      // console.log(state.getState(), "este es el state");
+
+      //console.log("este es el form", formEL);
+
+      formEL.addEventListener("submit", (e: any) => {
+        e.preventDefault();
+
+        state.setState({
+          ...state.getState(),
+          nombre: e.target.name.value,
+        });
+        console.log(e.target.name.value, "form");
+      });
     }
   }
-
   customElements.define("custon-button", Button);
 }

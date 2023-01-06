@@ -22,7 +22,7 @@ export function initRouter(conteiner: Element) {
 
     for (const r of routes) {
       if (r.path.test(route)) {
-        const el = r.component({ goTo });
+        const el: any = r.component({ goTo });
         if (conteiner.firstChild) {
           conteiner.firstChild.remove();
         }

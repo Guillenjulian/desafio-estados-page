@@ -12,7 +12,7 @@ const state = {
     for (const cb of this.listeners) {
       cb();
     }
-    // console.log(" soy el state y e cambiado", this.data);
+    console.log(" soy el state y e cambiado", this.data);
   },
   subscribe(callback: (any) => any) {
     this.listeners.push(callback);

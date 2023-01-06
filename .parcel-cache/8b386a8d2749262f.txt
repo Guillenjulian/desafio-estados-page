@@ -1,6 +1,6 @@
 4263
-84/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.b71e74eb.js1672888033387327285 0
-77/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.html1672887269805189552 0
+84/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.b71e74eb.js1672971159469155278 0
+77/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.html1672968169624157943 0
 91/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/semver/semver.js1668652328628000000 0
 89/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/semver/LICENSE1668652328628000000 0
 94/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/semver/package.json1668652328628000000 0
@@ -1242,7 +1242,7 @@
 95/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/resolve-from/license1668652337509999000 0
 129/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/node-resolver-core/test/fixture/nested/test.js1671154298573999000 0
 116/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/core/lib/requests/AssetRequest.js1671154293674000000 0
-88/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.b71e74eb.js.map1672888033391327323 0
+88/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist/index.b71e74eb.js.map1672971159473155404 0
 123/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/core/lib/requests/WriteBundlesRequest.js1671154293674000000 0
 118/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/core/lib/requests/PackageRequest.js1671154293674000000 0
 111/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@swc/helpers/lib/_to_property_key.js1669079122842000000 0
@@ -1805,7 +1805,7 @@
 126/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/runtime-js/lib/helpers/browser/js-loader.js1671154295635999000 0
 124/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@swc/helpers/src/_initializer_define_property.mjs1669079122842000000 0
 124/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/features/keyboardevent-which.js1671672345730000000 0
-74/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/state.ts1672798954977744701 0
+74/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/state.ts1672967626573002891 0
 122/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@swc/helpers/lib/_apply_decorated_descriptor.js1669079122842000000 0
 93/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/plugin/lib1672797629882380732 1
 110/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/runtime-js/lib/JSRuntime.js1671154295635999000 0
@@ -2189,7 +2189,7 @@
 149/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/package-manager/test/fixtures/has-a-not-yet-installed/package.json1671154293213999000 0
 109/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/codeframe/lib/codeframe.js1671154297841000000 0
 98/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/types/unsafe.js1671154297430999000 0
-89/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/componet/input/index.ts1672887775384956725 0
+89/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/componet/input/index.ts1672968691453861375 0
 106/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/regions/NZ.js1671672345730000000 0
 90/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/componet/header/index.ts1672878215485949103 0
 100/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/type-fest/ts41/index.d.ts1668652332407000000 0
@@ -2540,7 +2540,7 @@
 123/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/features/css-math-functions.js1671672345730000000 0
 109/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/graph/lib/AdjacencyList.js1671154297911000000 0
 106/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/regions/DE.js1671672345730000000 0
-83/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/page/form/form.ts1672884922238288398 0
+83/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/page/form/form.ts1672970325040211237 0
 104/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/source-map/index.d.ts1668652327841000000 0
 114/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/utils/test/PromiseQueue.test.js1671154293220999000 0
 98/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/terser/lib/sourcemap.js1670202348483999000 0
@@ -2721,7 +2721,7 @@
 120/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@swc/helpers/src/_iterable_to_array_limit.mjs1669079122842000000 0
 114/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/features/autofocus.js1671672345730000000 0
 117/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/terser/node_modules/commander/CHANGELOG.md1668652329311000000 0
-75/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/router.ts1672883422489250863 0
+75/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/router.ts1672969448831332283 0
 107/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/transformer-json/LICENSE1671154296595999000 0
 123/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/transformer-babel/lib/babelErrorUtils.js1671154296298000000 0
 119/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/workers/src/process/ProcessWorker.js1671154297434999000 0
@@ -2999,7 +2999,7 @@
 123/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/core/test/fixtures/main-mjs/package.json1671154293674000000 0
 100/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/css-select/lib/general.js1668652330499000000 0
 109/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/core/test/fixtures/plugins1672797629358374935 1
-66/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist1672888033395327361 1
+66/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/dist1672971159473155404 1
 92/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/yaml/dist/util.js1668652337154999000 0
 131/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/package-manager/test/fixtures/empty/package.json1671154293213999000 0
 122/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@swc/helpers/src/_skip_first_generator_next.mjs1669079122842000000 0
@@ -3457,7 +3457,7 @@
 117/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/posthtml/node_modules/posthtml-parser/dist1672797630018382236 1
 90/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/xxhash-wasm/esm1672797629970381705 1
 105/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/xxhash-wasm/esm/xxhash-wasm.js1668652330035000000 0
-89/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/page/welcome/welcome.ts1672888033363327056 0
+89/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/page/welcome/welcome.ts1672969292087820750 0
 109/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/xxhash-wasm/esm/xxhash-wasm.js.map1668652330035000000 0
 106/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/caniuse-lite/data/regions/AT.js1671672345730000000 0
 122/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@jridgewell/set-array/dist/set-array.umd.js.map1668652337928999000 0
@@ -3620,7 +3620,7 @@
 107/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/resolver-default/LICENSE1671154295938999000 0
 110/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/dom-serializer/lib/esm/package.json1668652337936000000 0
 126/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/lmdb/dependencies/lmdb/libraries/liblmdb/mdb_drop.11668652330371999000 0
-90/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/componet/button/index.ts1672887305609396379 0
+90/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/src/componet/button/index.ts1672971159381152497 0
 114/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/@parcel/node-resolver-core/node_modules1672800123765835840 1
 135/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/dom-serializer/node_modules/entities/lib/decode_codepoint.js1668652338006999000 0
 109/home/julian/dwf/mod-5/desafio-estados-2/desafio-estados-page/node_modules/cosmiconfig/dist/Explorer.d.ts.map1668652333119999000 0

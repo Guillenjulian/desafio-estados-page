@@ -560,6 +560,7 @@ var _router = require("./router");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initButon", ()=>initButon);
+var _state = require("./../../state");
 function initButon() {
     class Button extends HTMLElement {
         constructor(){
@@ -575,7 +576,10 @@ function initButon() {
             const style = document.createElement("style");
             div.classList.add("root");
             div.innerHTML = ` 
-    <button class=" button">${label}</button> 
+<form class="form">
+<input-field name="${label}" label="Nombre" id="text"></input-field>
+<button class=" button">${label}</button> 
+</form>
         `;
             style.innerHTML = `
         .root{
@@ -596,13 +600,24 @@ function initButon() {
         `;
             shadow.appendChild(style);
             shadow.appendChild(div);
-        // console.log("este es el buton", div);
+            // console.log("este es el buton", div);
+            const formEL = div.querySelector(".form");
+            // console.log(state.getState(), "este es el state");
+            //console.log("este es el form", formEL);
+            formEL.addEventListener("submit", (e)=>{
+                e.preventDefault();
+                (0, _state.state).setState({
+                    ...(0, _state.state).getState(),
+                    nombre: e.target.name.value
+                });
+                console.log(e.target.name.value, "form");
+            });
         }
     }
     customElements.define("custon-button", Button);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../../state":"1Yeju"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -632,7 +647,34 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"4QFWt":[function(require,module,exports) {
+},{}],"1Yeju":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "state", ()=>state);
+const state = {
+    data: {
+        list: []
+    },
+    listeners: [],
+    getState () {
+        return this.data;
+    },
+    setState (newState) {
+        this.data = newState;
+        for (const cb of this.listeners)cb();
+        console.log(" soy el state y e cambiado", this.data);
+    },
+    subscribe (callback) {
+        this.listeners.push(callback);
+    },
+    addItem (item) {
+        const cs = this.getState();
+        cs.list.push(item);
+        this.setState(cs);
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4QFWt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initRouter", ()=>initRouter);
@@ -674,7 +716,6 @@ function initRouter(conteiner) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initPageWelcome", ()=>initPageWelcome);
-var _state = require("./../../state");
 function initPageWelcome(params) {
     const div = document.createElement("div");
     const style = document.createElement("style");
@@ -689,20 +730,9 @@ function initPageWelcome(params) {
   <subtitle-field label ="Para continuar ingresá tu nombre"></subtitle>
   </div>
   <form class="form">
-<div>
-<input-field   label="Nombre" id="text"></input>
-</div>
-
-
-
   <custon-button  class= "custon-button " label="Comenzar"></custon-button>
 
-
-
-
   </form>
-  
-
 
   </div>
   
@@ -710,20 +740,9 @@ function initPageWelcome(params) {
    </div>
   
    `;
-    const formEL = div.querySelector(".form");
-    console.log((0, _state.state).getState(), "este es el state");
-    console.log("este es el form", formEL);
-    formEL.addEventListener("submit", (e)=>{
-        e.preventDefault();
-        (0, _state.state).setState({
-            ...(0, _state.state).getState(),
-            name: e.target.value
-        });
-        console.log(e.target.value, "form");
-    });
     const buttonEL = div.querySelector(".custon-button ");
     console.log(" este es el boton  del welcome", buttonEL);
-    //buttonEL.addEventListener("click", () => params.goTo("./form"));
+    buttonEL.addEventListener("click", ()=>params.goTo("./form"));
     style.innerHTML = `
   .body {  display: flex;
       flex-direction: column;
@@ -741,94 +760,65 @@ function initPageWelcome(params) {
     return div;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../../state":"1Yeju"}],"1Yeju":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "state", ()=>state);
-const state = {
-    data: {
-        list: []
-    },
-    listeners: [],
-    getState () {
-        return this.data;
-    },
-    setState (newState) {
-        this.data = newState;
-        for (const cb of this.listeners)cb();
-    // console.log(" soy el state y e cambiado", this.data);
-    },
-    subscribe (callback) {
-        this.listeners.push(callback);
-    },
-    addItem (item) {
-        const cs = this.getState();
-        cs.list.push(item);
-        this.setState(cs);
-    }
-};
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Opt5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initstep1", ()=>initstep1);
+var _state = require("../../state");
 function initstep1(params) {
-    const div = document.createElement("div");
-    const style = document.createElement("style");
-    div.innerHTML = `
+    class FormComponet extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+            (0, _state.state).subscribe(()=>this.render());
+        }
+        render() {
+            const shadow = this.attachShadow({
+                mode: "open"
+            });
+            const div = document.createElement("div");
+            const style = document.createElement("style");
+            div.innerHTML = `
+      
     <div class="body">
-  
     <header-element></header-element> 
-  
     <div class="container">
-  
     <title-field label=" Hola  "></title-field>
-  
-  
-  
-  <div>
-  <input-field label = "Email" id="email"></input>
-  </div>
-  
-  <div>
-  <input-field label = "Comida favorita" id="text"></input>
-  </div>
-  
+    <div>
+    <input-field label = "Email" id="email"></input>
+    </div>
+    <div>
+    <input-field label = "Comida favorita" id="text"></input>
+    </div>
     <custon-select label="Alguna de estas tres opciones"></custon-select>
-  
-  <custon-button  class= "custon-button " label="Enviar"></custon-button>
-  
-
-  
-  </div>
-  
-   <footer-element></footer-element>
-         </div>
-             `;
-    style.innerHTML = `
-    .body {  display: flex;
+    <custon-button  class= "custon-button " label="Enviar"></custon-button>
+    </div>
+    <footer-element></footer-element>
+    </div>
+    `;
+            style.innerHTML = `
+      .body {  display: flex;
       flex-direction: column;
-    
+    }
+    .container{
+      display: flex;
+      flex-direction: column;  
+      gap:25px;
+      margin-bottom:150px; 
     }
     
-    
-    
-      .container{
-        display: flex;
-        flex-direction: column;  
-        gap:25px;
-        margin-bottom:150px; 
-      }
-        
-                `;
-    div.append(style);
-    // const buttonEL = div.querySelector(".custon-button ") as any;
-    // // console.log(" este es el boton  del welcome", buttonEL);
-    // buttonEL.addEventListener("click", () => params.goTo("./thankyou"));
-    return div;
+    `;
+            shadow.appendChild(style);
+            shadow.appendChild(div);
+        // const buttonEL = div.querySelector(".custon-button ") as any;
+        // // console.log(" este es el boton  del welcome", buttonEL);
+        // buttonEL.addEventListener("click", () => params.goTo("./thankyou"));
+        }
+    }
+    customElements.define("step1-component", FormComponet);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2E1SI":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../state":"1Yeju"}],"2E1SI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initHeader", ()=>initHeader);
@@ -974,9 +964,9 @@ function initinput() {
             div.classList.add("root");
             div.innerHTML = `
         
-      
+      <span class="label">${label}</span>
       <input 
-       class="input" type="${this.id}" name= "${label}" placeholder=" ingresa tu ${label}"/>
+       class="input" type="${this.id}" name= "${label}" placeholder="  ${label}"/>
        
         `;
             style.innerHTML = `
