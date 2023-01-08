@@ -1,6 +1,6 @@
 const state = {
   data: {
-    list: [],
+    name: "name",
   },
 
   listeners: [],
@@ -19,7 +19,7 @@ const state = {
   },
   addItem(item: string) {
     const cs = this.getState();
-    cs.list.push(item);
+    cs.nombre.push(item);
     this.setState(cs);
   },
 };

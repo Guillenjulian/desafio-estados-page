@@ -43,20 +43,20 @@ export function initButon() {
 
       shadow.appendChild(div);
       // console.log("este es el buton", div);
-      const formEL: any = div.querySelector(".form") as any;
+      //   const formEL: any = div.querySelector(".form") as any;
       // console.log(state.getState(), "este es el state");
 
       //console.log("este es el form", formEL);
 
-      formEL.addEventListener("submit", (e: any) => {
-        e.preventDefault();
+      // formEL.addEventListener("submit", (e: any) => {
+      //   e.preventDefault();
 
-        state.setState({
-          ...state.getState(),
-          nombre: e.target.name.value,
-        });
-        console.log(e.target.name.value, "form");
-      });
+      //   state.setState({
+      //     ...state.getState(),
+      //     nombre: e.target.name.value,
+      //   });
+      //   console.log(e.target.name.value, "form");
+      // });
     }
   }
   customElements.define("custon-button", Button);

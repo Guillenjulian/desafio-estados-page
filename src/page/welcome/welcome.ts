@@ -1,6 +1,6 @@
 import { state } from "./../../state";
 
-export function initPageWelcome(params) {
+export function initPageWelcome() {
   const div = document.createElement("div");
   const style = document.createElement("style");
 
@@ -8,27 +8,14 @@ export function initPageWelcome(params) {
     <div class="body">
   
       <header-element></header-element> 
-      <div class="container">
   
-  <title-field label="Te damos la bienvenida a esta página"></title-field>
-  <div>
-  <subtitle-field label ="Para continuar ingresá tu nombre"></subtitle>
-  </div>
-  <form class="form">
-  <custon-button  class= "custon-button " label="Comenzar"></custon-button>
+  <form-element ></form-element>
 
-  </form>
 
-  </div>
-  
    <footer-element></footer-element>
    </div>
   
    `;
-
-  const buttonEL: any = div.querySelector(".custon-button ") as any;
-  console.log(" este es el boton  del welcome", buttonEL);
-  buttonEL.addEventListener("click", () => params.goTo("./form"));
 
   style.innerHTML = `
   .body {  display: flex;
