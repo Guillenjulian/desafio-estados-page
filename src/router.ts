@@ -1,32 +1,34 @@
 import { initPageWelcome } from "./page/welcome/welcome";
-import { initstep1 } from "./page/form/form";
+import { initFormPage } from "./page/form/form";
 
 const routes = [
-  {
-    path: /\/form/,
-    component: initstep1,
-  },
   {
     path: /\/welcome/,
     component: initPageWelcome,
   },
+  {
+    path: /\/form/,
+    component: initFormPage,
+  },
 ];
 
-export function initRouter(conteiner: Element) {
+// aqui se inicializa el router
+
+export function initRouter(rootEl: Element) {
   function goTo(path) {
     history.pushState({}, "", path);
     handelRoute(path);
   }
   function handelRoute(route) {
-    //  console.log("en el HandelRoute" + route);
+    //console.log("en el HandelRoute" + route);
 
     for (const r of routes) {
       if (r.path.test(route)) {
         const el: any = r.component({ goTo });
-        if (conteiner.firstChild) {
-          conteiner.firstChild.remove();
+        if (rootEl.firstChild) {
+          rootEl.firstChild.remove();
         }
-        conteiner.appendChild(el);
+        rootEl.appendChild(el);
       }
     }
   }

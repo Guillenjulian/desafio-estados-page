@@ -534,59 +534,55 @@ function hmrAcceptRun(bundle, id) {
 },{}],"h7u1C":[function(require,module,exports) {
 //estas funciones se encarga de renderizar los componente
 var _header = require("./componet/header");
-var _button = require("./componet/button");
 var _footer = require("./componet/footer");
-var _input = require("./componet/input");
-var _subtitle = require("./componet/subtitle");
-var _title = require("./componet/title");
-var _form = require("./componet/form");
-var _selector = require("./componet/selector");
+//import {} from "./componet/button";
+//import {} from "./componet/input";
+//import {} from "./componet/subtitle";
+//import {  } from "./componet/form";
+//import { initSelector } from "./componet/selector";
 //esta funcion  se encarda el rooteo de la pagina
 var _router = require("./router");
 (function main() {
     const rootEl = document.querySelector(".root");
+    //console.log(rootEl);
     // traigo componentes y los renderizo
-    (0, _form.initForm)();
-    (0, _selector.initSelector)();
-    (0, _input.initinput)();
-    (0, _subtitle.initSubtitel)();
-    (0, _title.initTitle)();
     (0, _header.initHeader)();
-    (0, _button.initButon)();
+    //initTitle();
     (0, _footer.initFooter)();
     //rooteo todos los elementos
     (0, _router.initRouter)(rootEl);
 })();
 
-},{"./router":"4QFWt","./componet/header":"2E1SI","./componet/button":"2paZq","./componet/footer":"01tnz","./componet/input":"4WNyW","./componet/subtitle":"knBLY","./componet/title":"hRMLs","./componet/selector":"5tZFh","./componet/form":"l1bM1"}],"4QFWt":[function(require,module,exports) {
+},{"./router":"4QFWt","./componet/footer":"01tnz","./componet/header":"2E1SI"}],"4QFWt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// aqui se inicializa el router
 parcelHelpers.export(exports, "initRouter", ()=>initRouter);
 var _welcome = require("./page/welcome/welcome");
 var _form = require("./page/form/form");
 const routes = [
     {
-        path: /\/form/,
-        component: (0, _form.initstep1)
-    },
-    {
         path: /\/welcome/,
         component: (0, _welcome.initPageWelcome)
+    },
+    {
+        path: /\/form/,
+        component: (0, _form.initFormPage)
     }
 ];
-function initRouter(conteiner) {
+function initRouter(rootEl) {
     function goTo(path) {
         history.pushState({}, "", path);
         handelRoute(path);
     }
     function handelRoute(route) {
-        //  console.log("en el HandelRoute" + route);
+        //console.log("en el HandelRoute" + route);
         for (const r of routes)if (r.path.test(route)) {
             const el = r.component({
                 goTo
             });
-            if (conteiner.firstChild) conteiner.firstChild.remove();
-            conteiner.appendChild(el);
+            if (rootEl.firstChild) rootEl.firstChild.remove();
+            rootEl.appendChild(el);
         }
     }
     if (location.pathname == "/") goTo("/welcome");
@@ -600,15 +596,27 @@ function initRouter(conteiner) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initPageWelcome", ()=>initPageWelcome);
-function initPageWelcome() {
+var _state = require("./../../state");
+function initPageWelcome(params) {
     const div = document.createElement("div");
     const style = document.createElement("style");
     div.innerHTML = `
     <div class="body">
   
       <header-element></header-element> 
-  
-  <form-element ></form-element>
+
+
+      <section class="section-welcome">
+      <h1 class="section-welcome__title">Te damos la bienvenida a esta página</h1>
+      <h3 class="section-welcome__subtitle">Para continuar ingresá tu nombre</h3>
+      <form class="section-welcome__form">
+        <label class="form__label">
+          Nombre
+          <input class="form__input" name="name" type="text" placeholder="ingresá tu nombre" /input>
+        </label>
+        <button class="form__button">Comenzar</button>
+      </form>
+    </section>
 
 
    <footer-element></footer-element>
@@ -628,11 +636,23 @@ function initPageWelcome() {
     }
     
     `;
+    const formEl = div.querySelector(".section-welcome__form");
+    //console.log(formEl, "este es el form");
+    formEl.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        params.goTo("/form");
+        // console.log(e.target.name.value, "form");
+        (0, _state.state).setState({
+            ...(0, _state.state).getState(),
+            name: e.target.name.value
+        });
+        console.log((0, _state.state).getState(), "state");
+    });
     div.append(style);
     return div;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../../state":"1Yeju"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -662,401 +682,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"4Opt5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initstep1", ()=>initstep1);
-function initstep1(params) {
-    const div = document.createElement("div");
-    const style = document.createElement("style");
-    div.innerHTML = `
-    <div class="body">
-  
-    <header-element></header-element> 
-  
-    <div class="container">
-  
-    <title-field label=" Hola  "></title-field>
-  
-  
-  
-  <div>
-  <input-field label = "Email" id="email"></input>
-  </div>
-  
-  <div>
-  <input-field label = "Comida favorita" id="text"></input>
-  </div>
-  
-    <custon-select label="Alguna de estas tres opciones"></custon-select>
-  
-  <custon-button  class= "custon-button " label="Enviar"></custon-button>
-  
-
-  
-  </div>
-  
-   <footer-element></footer-element>
-         </div>
-             `;
-    style.innerHTML = `
-    .body {  display: flex;
-      flex-direction: column;
-    
-    }
-    
-    
-    
-      .container{
-        display: flex;
-        flex-direction: column;  
-        gap:25px;
-        margin-bottom:150px; 
-      }
-        
-                `;
-    div.append(style);
-    // const buttonEL = div.querySelector(".custon-button ") as any;
-    // // console.log(" este es el boton  del welcome", buttonEL);
-    // buttonEL.addEventListener("click", () => params.goTo("./thankyou"));
-    return div;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2E1SI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initHeader", ()=>initHeader);
-function initHeader() {
-    class Header extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            this.innerText = "Header";
-            this.style.height = "60px";
-            this.style.backgroundColor = "  #FF8282   ";
-            this.style.display = "flex";
-            this.style.alignItems = "center";
-            this.style.justifyContent = "center";
-            this.style.fontSize = "22px";
-        }
-    }
-    customElements.define("header-element", Header);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2paZq":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initButon", ()=>initButon);
-function initButon() {
-    class Button extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            const shadow = this.attachShadow({
-                mode: "open"
-            });
-            const label = this.getAttribute("label");
-            const div = document.createElement("div");
-            const style = document.createElement("style");
-            div.classList.add("root");
-            div.innerHTML = ` 
-<form class="form">
-<input-field name="${label}" label="Nombre" id="text"></input-field>
-<button class=" button">${label}</button> 
-</form>
-        `;
-            style.innerHTML = `
-        .root{
-            display: flex;
-            flex-direction: column;
-        }
-        .label{
-            font-size:18px
-        }
-        .button{
-            font-size:18px;
-            padding: 17px 13px;
-            margin: 18px;
-            border-radius: 4px;
-            background-color : #9CBBE9;
-            
-        }
-        `;
-            shadow.appendChild(style);
-            shadow.appendChild(div);
-        // console.log("este es el buton", div);
-        //   const formEL: any = div.querySelector(".form") as any;
-        // console.log(state.getState(), "este es el state");
-        //console.log("este es el form", formEL);
-        // formEL.addEventListener("submit", (e: any) => {
-        //   e.preventDefault();
-        //   state.setState({
-        //     ...state.getState(),
-        //     nombre: e.target.name.value,
-        //   });
-        //   console.log(e.target.name.value, "form");
-        // });
-        }
-    }
-    customElements.define("custon-button", Button);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"01tnz":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initFooter", ()=>initFooter);
-function initFooter() {
-    class Footer extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            this.innerText = "Footer";
-            this.style.height = "233px";
-            this.style.backgroundColor = "  #FFA0EA   ";
-            this.style.display = "flex";
-            this.style.alignItems = "center";
-            this.style.justifyContent = "center";
-            this.style.fontSize = "22px";
-        }
-    }
-    customElements.define("footer-element", Footer);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4WNyW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initinput", ()=>initinput);
-function initinput() {
-    class TextField extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            const shadow = this.attachShadow({
-                mode: "open"
-            });
-            const label = this.getAttribute("label");
-            const div = document.createElement("div");
-            const style = document.createElement("style");
-            div.classList.add("root");
-            div.innerHTML = `
-        
-      <span class="label">${label}</span>
-      <input 
-       class="input" type="${this.id}" name= "${label}" placeholder="  ${label}"/>
-       
-        `;
-            style.innerHTML = `
-          .root{
-          display: flex;
-          flex-direction: column;
-        }
-        .div {
-          
-        }
-        .label{
-          font-size:18px;
-          margin: 18px;
-        }
-          
-        .input{
-          padding: 17px 13px;
-          margin: 18px;
-          border :3px solid black;
-          border-radius 4px
-          font-size:18px;
-        }
-        `;
-            shadow.appendChild(style);
-            shadow.appendChild(div);
-        }
-    }
-    customElements.define("input-field", TextField);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"knBLY":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initSubtitel", ()=>initSubtitel);
-function initSubtitel() {
-    class SubTitle extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            const shadow = this.attachShadow({
-                mode: "open"
-            });
-            const label = this.getAttribute("label");
-            const div = document.createElement("div");
-            const style = document.createElement("style");
-            div.classList.add("root");
-            div.innerHTML = `
-         
-            <h3 class = "h3"> ${label}
-           </h3>
-         
-          `;
-            style.innerHTML = `
-      .h3{
-      
-        font-size: 38px;
-        font-weight: 700;
-        color:  #000000;
-        text-align: center;
-      }
-          `;
-            shadow.appendChild(style);
-            shadow.appendChild(div);
-        }
-    }
-    customElements.define("subtitle-field", SubTitle);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hRMLs":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initTitle", ()=>initTitle);
-function initTitle() {
-    class Title extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            const shadow = this.attachShadow({
-                mode: "open"
-            });
-            const label = this.getAttribute("label");
-            const div = document.createElement("div");
-            const style = document.createElement("style");
-            div.classList.add("root");
-            div.innerHTML = `
-       
-          <h1 class = "h1">
-          ${label}
-         </h1>
-       
-        `;
-            style.innerHTML = `
-    .h1{
-      font-size: 52px;
-      font-weight: 700;
-      color:  #000000;
-      text-align: center;
-    }
-        `;
-            shadow.appendChild(style);
-            shadow.appendChild(div);
-        }
-    }
-    customElements.define("title-field", Title);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5tZFh":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initSelector", ()=>initSelector);
-function initSelector() {
-    class Selector extends HTMLElement {
-        constructor(){
-            super();
-            this.render();
-        }
-        render() {
-            const shadow = this.attachShadow({
-                mode: "open"
-            });
-            const label = this.getAttribute("label");
-            const div = document.createElement("div");
-            const style = document.createElement("style");
-            div.classList.add("root");
-            div.innerHTML = ` 
-        <label class=" label">${label}</label>
-  
-          <select class=" select" name="option" >
-          <option value="piedra">Piedra</option>
-          <option value="papel">Papel</option>
-          <option value="tijera">Tijera</option>
-        </select>
-          `;
-            style.innerHTML = `
-          .root{
-              display: flex;
-              flex-direction: column;
-              
-          }
-          .label{
-              font-size:18px
-          }
-  
-          .select{
-              font-size:18px;
-              padding: 17px 13px;
-              margin: 18px;
-              border-radius: 4px;
-              background-color: #fff;
-              border: 2px solid 
-            }
-          `;
-            shadow.appendChild(style);
-            shadow.appendChild(div);
-        // console.log("este es el buton", div);
-        }
-    }
-    customElements.define("custon-select", Selector);
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l1bM1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initForm", ()=>initForm);
-var _state = require("../../state");
-function initForm() {
-    class Form extends HTMLElement {
-        shadow = this.attachShadow({
-            mode: "open"
-        });
-        constructor(){
-            super();
-            this.render();
-        //   state.subscribe(() => {});
-        //   this.syncWhichState();
-        // }
-        // syncWhichState() {
-        //   const lastState = state.getState();
-        //   this.name = lastState.name || "";
-        //   this.render();
-        }
-        render() {
-            this.shadow.innerHTML = `
-        <form class="form">
-        <lebel for="name">Nombre
-        <input-field id="text" name="name" label="Nombre"></input-field>
-        </lebel>
-        <button class="button">Enviar</button>
-    </form>
-    
-    `;
-            const formEL = this.shadow.querySelector(".form");
-            formEL.addEventListener("submit", (e)=>{
-                formEL.preventDefault();
-            });
-            console.log("soy el state12", (0, _state.state).getState());
-        }
-    }
-    customElements.define("form-element", Form);
-}
-
-},{"../../state":"1Yeju","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1Yeju":[function(require,module,exports) {
+},{}],"1Yeju":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -1082,6 +708,80 @@ const state = {
         this.setState(cs);
     }
 };
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Opt5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initFormPage", ()=>initFormPage);
+var _state = require("../../state");
+function initFormPage() {
+    const div = document.createElement("div");
+    const style = document.createElement("style");
+    const name = (0, _state.state).subscribe((state)=>{
+        const localState = state.getState();
+        console.log(" el state", localState);
+    });
+    div.innerHTML = `
+  <div class="body">
+  <header-element></header-element>
+  
+  
+  <h1 class="section-welcome__title">Te damos la bienvenida a esta página ${name}</h1>
+
+
+  <footer-element></footer-element>
+</div>
+`;
+    div.append(style);
+    // console.log(div, "este es el div");
+    return div;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../state":"1Yeju"}],"01tnz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initFooter", ()=>initFooter);
+function initFooter() {
+    class Footer extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            this.innerText = "Footer";
+            this.style.height = "233px";
+            this.style.backgroundColor = "  #FFA0EA   ";
+            this.style.display = "flex";
+            this.style.alignItems = "center";
+            this.style.justifyContent = "center";
+            this.style.fontSize = "22px";
+        }
+    }
+    customElements.define("footer-element", Footer);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2E1SI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initHeader", ()=>initHeader);
+function initHeader() {
+    class Header extends HTMLElement {
+        constructor(){
+            super();
+            this.render();
+        }
+        render() {
+            this.innerText = "Header";
+            this.style.height = "60px";
+            this.style.backgroundColor = "  #FF8282   ";
+            this.style.display = "flex";
+            this.style.alignItems = "center";
+            this.style.justifyContent = "center";
+            this.style.fontSize = "22px";
+        }
+    }
+    customElements.define("header-element", Header);
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iJYvl","h7u1C"], "h7u1C", "parcelRequired77e")
 

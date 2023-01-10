@@ -42,7 +42,7 @@ export function initButon() {
       shadow.appendChild(style);
 
       shadow.appendChild(div);
-      // console.log("este es el buton", div);
+      console.log("este es el buton", div);
       //   const formEL: any = div.querySelector(".form") as any;
       // console.log(state.getState(), "este es el state");
 

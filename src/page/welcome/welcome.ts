@@ -1,6 +1,6 @@
 import { state } from "./../../state";
 
-export function initPageWelcome() {
+export function initPageWelcome(params) {
   const div = document.createElement("div");
   const style = document.createElement("style");
 
@@ -8,8 +8,19 @@ export function initPageWelcome() {
     <div class="body">
   
       <header-element></header-element> 
-  
-  <form-element ></form-element>
+
+
+      <section class="section-welcome">
+      <h1 class="section-welcome__title">Te damos la bienvenida a esta página</h1>
+      <h3 class="section-welcome__subtitle">Para continuar ingresá tu nombre</h3>
+      <form class="section-welcome__form">
+        <label class="form__label">
+          Nombre
+          <input class="form__input" name="name" type="text" placeholder="ingresá tu nombre" /input>
+        </label>
+        <button class="form__button">Comenzar</button>
+      </form>
+    </section>
 
 
    <footer-element></footer-element>
@@ -30,6 +41,27 @@ export function initPageWelcome() {
     }
     
     `;
+
+  const formEl: any = div.querySelector(
+    ".section-welcome__form"
+  ) as HTMLElement;
+
+  //console.log(formEl, "este es el form");
+
+  formEl.addEventListener("submit", (e: any) => {
+    e.preventDefault();
+    params.goTo("/form");
+
+    // console.log(e.target.name.value, "form");
+
+    state.setState({
+      ...state.getState(),
+
+      name: e.target.name.value,
+    });
+    console.log(state.getState(), "state");
+  });
+
   div.append(style);
   return div;
 }

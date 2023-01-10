@@ -1,59 +1,26 @@
-export function initstep1(params) {
+import { state } from "../../state";
+
+export function initFormPage() {
   const div = document.createElement("div");
   const style = document.createElement("style");
+  const name = state.subscribe((state) => {
+    const localState = state.getState();
+    console.log(" el state", localState);
+  });
 
   div.innerHTML = `
-    <div class="body">
-  
-    <header-element></header-element> 
-  
-    <div class="container">
-  
-    <title-field label=" Hola  "></title-field>
+  <div class="body">
+  <header-element></header-element>
   
   
-  
-  <div>
-  <input-field label = "Email" id="email"></input>
-  </div>
-  
-  <div>
-  <input-field label = "Comida favorita" id="text"></input>
-  </div>
-  
-    <custon-select label="Alguna de estas tres opciones"></custon-select>
-  
-  <custon-button  class= "custon-button " label="Enviar"></custon-button>
-  
+  <h1 class="section-welcome__title">Te damos la bienvenida a esta página ${name}</h1>
 
-  
-  </div>
-  
-   <footer-element></footer-element>
-         </div>
-             `;
 
-  style.innerHTML = `
-    .body {  display: flex;
-      flex-direction: column;
-    
-    }
-    
-    
-    
-      .container{
-        display: flex;
-        flex-direction: column;  
-        gap:25px;
-        margin-bottom:150px; 
-      }
-        
-                `;
+  <footer-element></footer-element>
+</div>
+`;
   div.append(style);
-
-  // const buttonEL = div.querySelector(".custon-button ") as any;
-  // // console.log(" este es el boton  del welcome", buttonEL);
-  // buttonEL.addEventListener("click", () => params.goTo("./thankyou"));
+  // console.log(div, "este es el div");
 
   return div;
 }
