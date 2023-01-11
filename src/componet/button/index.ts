@@ -17,7 +17,7 @@ export function initButon() {
 
       div.innerHTML = ` 
 <form class="form">
-<input-field name="${label}" label="Nombre" id="text"></input-field>
+
 <button class=" button">${label}</button> 
 </form>
         `;
@@ -25,38 +25,31 @@ export function initButon() {
         .root{
             display: flex;
             flex-direction: column;
-        }
-        .label{
-            font-size:18px
-        }
-        .button{
-            font-size:18px;
-            padding: 17px 13px;
             margin: 18px;
-            border-radius: 4px;
-            background-color : #9CBBE9;
-            
+
         }
+       
+        .button{
+          width: 100%;
+          padding: 0.5rem;
+          margin-bottom: 1rem;
+          border: 1px solid #000;
+          border-radius: 5px;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+          background-color: #9cbbe9;
+          color: #000;
+          font-size: 1.5rem;
+          font-weight: 400;
+          cursor: pointer;
+         
+        }
+            
+       
         `;
 
       shadow.appendChild(style);
 
       shadow.appendChild(div);
-      console.log("este es el buton", div);
-      //   const formEL: any = div.querySelector(".form") as any;
-      // console.log(state.getState(), "este es el state");
-
-      //console.log("este es el form", formEL);
-
-      // formEL.addEventListener("submit", (e: any) => {
-      //   e.preventDefault();
-
-      //   state.setState({
-      //     ...state.getState(),
-      //     nombre: e.target.name.value,
-      //   });
-      //   console.log(e.target.name.value, "form");
-      // });
     }
   }
   customElements.define("custon-button", Button);

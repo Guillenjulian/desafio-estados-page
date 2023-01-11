@@ -1,24 +1,30 @@
-import { state } from "../../state";
-
-export function initFormPage() {
+export function initFormPage(params: any) {
   const div = document.createElement("div");
   const style = document.createElement("style");
-  const name = state.subscribe((state) => {
-    const localState = state.getState();
-    console.log(" el state", localState);
-  });
 
   div.innerHTML = `
   <div class="body">
   <header-element></header-element>
+  <section class="section">
   
+  <custon-title></custon-title>
   
-  <h1 class="section-welcome__title">Te damos la bienvenida a esta página ${name}</h1>
+  <custon-subtitle ></custon-subtitle>
+  <input-field id="email" label="Email"></input-field>
+  <input-field id="text" label="Comida Favorita"></input-field>
+  <custon-select label="Selecciona una opción"></custon-select>
 
-
+  <custon-button  class = "section_Button" label="Enviar"></custon-button>
+  </section>
+  
   <footer-element></footer-element>
-</div>
-`;
+  </div>
+  `;
+  const buttonEl = div.querySelector(".section_Button") as HTMLElement;
+  buttonEl.addEventListener("click", () => {
+    params.goTo("/welcome");
+  });
+
   div.append(style);
   // console.log(div, "este es el div");
 

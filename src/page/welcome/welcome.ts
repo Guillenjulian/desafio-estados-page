@@ -10,10 +10,10 @@ export function initPageWelcome(params) {
       <header-element></header-element> 
 
 
-      <section class="section-welcome">
-      <h1 class="section-welcome__title">Te damos la bienvenida a esta página</h1>
-      <h3 class="section-welcome__subtitle">Para continuar ingresá tu nombre</h3>
-      <form class="section-welcome__form">
+      <section class="welcome">
+      <h1 class="welcome__title">Te damos la bienvenida a esta página</h1>
+      <h3 class="welcome__subtitle">Para continuar ingresá tu nombre</h3>
+      <form class="welcome__form">
         <label class="form__label">
           Nombre
           <input class="form__input" name="name" type="text" placeholder="ingresá tu nombre" /input>
@@ -42,9 +42,7 @@ export function initPageWelcome(params) {
     
     `;
 
-  const formEl: any = div.querySelector(
-    ".section-welcome__form"
-  ) as HTMLElement;
+  const formEl: any = div.querySelector(".welcome__form") as HTMLElement;
 
   //console.log(formEl, "este es el form");
 

@@ -13,9 +13,9 @@ export function initSelector() {
 
       div.classList.add("root");
 
-      div.innerHTML = ` 
+      div.innerHTML = `
         <label class=" label">${label}</label>
-  
+
           <select class=" select" name="option" >
           <option value="piedra">Piedra</option>
           <option value="papel">Papel</option>
@@ -26,19 +26,19 @@ export function initSelector() {
           .root{
               display: flex;
               flex-direction: column;
-              
+
           }
           .label{
-              font-size:18px
-          }
-  
+            font-size:18px;
+            margin: 18px;}
+
           .select{
               font-size:18px;
               padding: 17px 13px;
               margin: 18px;
               border-radius: 4px;
               background-color: #fff;
-              border: 2px solid 
+              border: 2px solid
             }
           `;
 
